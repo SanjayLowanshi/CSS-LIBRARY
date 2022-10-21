@@ -1,0 +1,28 @@
+// while using @extend , instead of writing classes using '.', use '%'.i.e, Placeholder rule
+// “placeholder”. It looks and acts a lot like a class selector, but it starts with a % and it's not included in the CSS output.
+
+%flex-layout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.navbar {
+  @extend %flex-layout;
+  padding: $base-padding $base-padding * 2;
+  box-shadow: $base-box-shadow;
+  .site-title {
+    font-size: $font-size-lg;
+  }
+  .container {
+    @extend %flex-layout;
+  }
+}
+// color variation of navbar
+@each $key, $val in $colors {
+  .navbar-#{$key} {
+    @extend .navbar;
+  }
+}
